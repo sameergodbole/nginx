@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx                        # Label used by the selector and service
+  replicas: 2                           # Specifies the desired number of pods
+  template:
+    metadata:
+      labels:
+        app: nginx                      # Label used by the selector and service
+    spec:
+      containers:
+      - name: nginx
+        image: harbor.sunfire.lab/library/nginx:latest      # The NGINX container image
+        ports:
+        - containerPort: 80             # The port the container exposes
